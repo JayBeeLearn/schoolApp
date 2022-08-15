@@ -19,12 +19,30 @@ use App\Http\Controllers\ParentController;
 
 
 
-Route::get('school', [HomeController::class, 'index']);
+Route::get('school', [HomeController::class, 'index'])->name('school');
 
 // Route::get('/school/{home}', [HomeController::class, 'index']);
 
-Route::resource('pupils', PupilController::class);
+// Route::resource('pupils', PupilController::class);
+Route::get('/school/pupils', [PupilController::class, 'index'])->name('pupils.index');
+Route::get('/pupils/create', [PupilController::class, 'create'])->name('pupils.create');
+Route::get('/pupils/show/{pupil}', [PupilController::class, 'show'])->name('pupils.show');
+Route::get('/pupils/edit/{pupil}', [PupilController::class, 'edit'])->name('pupils.edit');
+
+Route::post('/pupils', [PupilController::class, 'store'])->name('pupils.store');
+Route::put('/pupils/{pupil}', [PupilController::class, 'update'])->name('pupils.update');
+
+Route::delete('/pupils/{pupil}', [PupilController::class, 'destroy'])->name('pupils.destroy');
 
 Route::resource('parents', ParentController::class);
+Route::get('/school/parents', [ParentController::class, 'index'])->name('parents.index');
+Route::get('/parents/create', [ParentController::class, 'create'])->name('parents.create');
+Route::get('/parents/show/{parent}', [ParentController::class, 'show'])->name('parents.show');
+Route::get('/parents/edit/{parent}', [ParentController::class, 'edit'])->name('parents.edit');
+
+Route::post('/parents', [ParentController::class, 'store'])->name('parents.store');
+Route::put('/parents/{parent}', [ParentController::class, 'update'])->name('parents.update');
+
+Route::delete('/parents/{parent}', [ParentController::class, 'destroy'])->name('parents.destroy');
 
 Route::resource('class', ClassController::class);

@@ -19,16 +19,10 @@
         <h3>Showing {{ $parent->father_name }}</h3>
 
     </div>
-    <div class="container justify-content-center d-flex m-2 ">
-        <h4>Parent ID: </h4>
-        <h4>{{ $parent->id }}</h4>
-    </div>
-                
-      
-
-    <div class="d-flex justify-content-center ">
+   
+    <div class="d-flex justify-content-center m-2">
         
-        <div class="father col bg-light mx-4">
+        <div class="father col bg-light m-2">
             <table class="table table-bordered">
                 <tr>
                     <th style="width:200px">DESCRIPTION</th>
@@ -50,7 +44,7 @@
                 </tr>
             </table>
         </div>
-        <div class="mother col bg-grey mx-4">
+        <div class="mother col bg-grey m-2">
             <table class="table table-bordered">
                 <tr>
                     <th style="width:200px">DESCRIPTION</th>
@@ -78,14 +72,16 @@
     </div>
     
 
-     @foreach ($pupils as $pupil)
-         <li>
-             <a href="{{ route('pupils.show', $pupil->id) }}">
-                {{ $pupil->first_name}} 
-                {{ $pupil->middle_name }} {{ $pupil->last_name }}
-            </a>
-        </li>
-     @endforeach
+    <ol>
+        @foreach ($pupils as $pupil)
+            <li>
+                <a href="{{ route('pupils.show', $pupil->id) }}">
+                    {{ $pupil->first_name}} 
+                    {{ $pupil->middle_name }} {{ $pupil->last_name }}
+                </a>
+            </li>
+        @endforeach
+    </ol>
     <div class="container text-center">
             <a href="{{ route('parents.edit', $parent->id) }}" class="btn btn-warning"> Edit</a>
     </div>

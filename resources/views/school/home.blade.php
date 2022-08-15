@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1 class="bg  bg-info text-white text-center  rounded my-2 py-3">
-            Welcome to Jahcares International Schools
+            Welcome to @include('include.schoolname')
         </h1>
     </div> 
     <div class="container">

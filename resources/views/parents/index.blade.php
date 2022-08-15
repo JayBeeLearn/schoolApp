@@ -51,14 +51,15 @@
                 @foreach ($parents as $parent)
                 <tr>
                         <td>{{ $parent->id }}</td>
-                        <td>{{ $parent->father_name}}</td>
-                        <td>{{ $parent->mother_name}}</td>
+                        <td>
+                            <a href="{{ route('parents.show', $parent->id) }}" class="">{{ $parent->father_name}} </a>
+                            
+                        
+                        </td>
+                        <td><a href="{{ route('parents.show', $parent->id) }}" class="">{{ $parent->mother_name}} </a></td>
                         <td style="width:250px">
                             <form action="{{ route('parents.destroy', $parent->id) }}"method="POST">
-                               
-                                <a href="{{ route('parents.show', $parent->id) }}" class="btn btn-success"> Show</a>
-                                <a href="{{ route('parents.edit', $parent->id) }}" class="btn btn-warning"> Edit</a>
-                                
+                                                       
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="confirm('Are you Sure you want to Delete parent/Student?')">Delete</button>

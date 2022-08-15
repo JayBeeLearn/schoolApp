@@ -8,9 +8,9 @@
                 </button>
                        
             
-                 <button class="rounded px-1    bg-primary">
+                 {{-- <button class="rounded px-1    bg-primary">
                     <a href="{{ route('pupils.create') }}" class="text-white btn "><h6>Add New Pupil</h6></a>
-                </button>
+                </button> --}}
         </div>
         
 
