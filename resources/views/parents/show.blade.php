@@ -76,12 +76,13 @@
         </div>
         
     </div>
-   
-     @foreach ($child as $pupil)
+    
+
+     @foreach ($pupils as $pupil)
          <li>
-             {{-- <a href="{{ route('pupils.show', $pupil->id) }}"> --}}
-                {{ $pupil-> }} 
-                {{-- {{ $pupil->middle_name }} {{ $pupil->last_name }} --}}
+             <a href="{{ route('pupils.show', $pupil->id) }}">
+                {{ $pupil->first_name}} 
+                {{ $pupil->middle_name }} {{ $pupil->last_name }}
             </a>
         </li>
      @endforeach

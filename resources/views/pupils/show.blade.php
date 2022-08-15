@@ -15,11 +15,10 @@
         @foreach ($parents as $parent)
             <ul>
                 <li>
-                    Father's Name: <a href="{{ route('parents.show', $parent->id) }}"> {{ $parent->father_name }} </a>
+                    Parents's Name: <a href="{{ route('parents.show', $parent->id) }}"> {{ $parent->father_name }}, {{ $parent->mother_name }} </a>
                 </li>
             </ul>
         @endforeach
-    
         <table class="table table-bordered">
             <tr>
                 <th>DESCRIPTION</th>

@@ -66,7 +66,8 @@ class PupilController extends Controller
     {
         // create a variable, call the model; use with function and pass in the 
         //relationship model name i.e the name used in model while creating the relationship 
-        $parents = Parents::with('pupil')->get();
+        $parents = Parents::where('id', $pupil->parents_id)->get();
+        // $parents = Parents::with('pupil')->get();
         
 
         return view('pupils.show', compact('pupil', 'parents'));

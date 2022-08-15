@@ -17,6 +17,9 @@ class ParentController extends Controller
     {
         $parents = Parents::latest()->paginate(3);
         return view('parents.index', compact('parents'))->with(request()->input('page'));
+
+        // $pupil = Parents::with('pupil');
+        // dd($pupil);
     }
 
     /**
@@ -66,15 +69,13 @@ class ParentController extends Controller
         return view('parents.show', compact('parent', 'pupils'));
     }
 
-    public function show(Parents $parent, Pupil $pupils)
+    public function show(Parents $parent, Pupil $pupil)
     {
         // $parent_id = Parents::get('id');
         // $pupils = Pupil::find($parent_id);
 
-
-        $child = Parents::with('pupils')->get();
-        // dd($child);
-        // $pupils = Pupil::where('parents_id', $parent->id)->first();
+        
+        $pupils = Pupil::where('parents_id', $parent->id)->get();
         // dd($pupils->first_name);
         // foreach($pupils as $pupil)
         // {
