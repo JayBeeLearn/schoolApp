@@ -56,8 +56,8 @@
             </div>
 
             <div class="form-group">
-                <label for="parents_id">Parents Id</label>
-                <input type="text" name="parents_id" placeholder="Enter parents ID" class="form-control">
+                <label for="parents_id" class="sr-only" >Parents Id</label>
+                <input type="text" name="parents_id" placeholder="Enter parents ID" class="form-control" value="{{ $parents->id }}" hidden>
             </div>
 
             <div class="form-group">

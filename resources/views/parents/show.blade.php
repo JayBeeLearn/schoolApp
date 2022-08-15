@@ -9,7 +9,7 @@
         </div>
         <div>
             <button class="rounded px-1    bg-primary">
-                    <a href="{{ route('pupils.create') }}" class="text-white btn "><h6>Add New Pupil</h6></a>
+                    <a href="{{ route('pupils.create', $parent->id) }}" class="text-white btn "><h6>Add New Pupil</h6></a>
             </button>
         </div>
         

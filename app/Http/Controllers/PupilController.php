@@ -28,9 +28,10 @@ class PupilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Parents $parents)
     {
-        return view('pupils.create');
+        // $parents = Parents::all();
+        return view('pupils.create', compact('parents'));
     }
 
     /**

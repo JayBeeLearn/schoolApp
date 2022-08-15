@@ -23,9 +23,9 @@ Route::get('school', [HomeController::class, 'index'])->name('school');
 
 // Route::get('/school/{home}', [HomeController::class, 'index']);
 
-// Route::resource('pupils', PupilController::class);
+Route::resource('pupils', PupilController::class);
 Route::get('/school/pupils', [PupilController::class, 'index'])->name('pupils.index');
-Route::get('/pupils/create', [PupilController::class, 'create'])->name('pupils.create');
+Route::get('/pupils/create/{parents}', [PupilController::class, 'create'])->name('pupils.create');
 Route::get('/pupils/show/{pupil}', [PupilController::class, 'show'])->name('pupils.show');
 Route::get('/pupils/edit/{pupil}', [PupilController::class, 'edit'])->name('pupils.edit');
 
