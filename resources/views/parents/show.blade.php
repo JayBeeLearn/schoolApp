@@ -22,7 +22,7 @@
    
     <div class="d-flex justify-content-center m-2">
         
-        <div class="father col bg-light m-2">
+        <div class="father col bg-light ml-4 pl-4">
             <table class="table table-bordered">
                 <tr>
                     <th style="width:200px">DESCRIPTION</th>

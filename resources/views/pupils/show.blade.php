@@ -33,6 +33,10 @@
                 <td>{{ $pupil->first_name }} {{ $pupil->middle_name }} {{ $pupil->last_name }}</td>
             </tr>
             <tr>
+                <td>Class</td>
+                <td>{{ $pupil->class }}</td>
+            </tr>
+            <tr>
                 <td>Gender</td>
                 <td>{{ $pupil->gender }}</td>
             </tr>

@@ -36,6 +36,7 @@ class CreateParentsTable extends Migration
             $table->string('address');
             $table->unsignedInteger('parents_id');
             $table->integer('school_fee');
+            $table->string('class');
             $table->timestamps();
             $table->foreign('parents_id')
             ->references('id')

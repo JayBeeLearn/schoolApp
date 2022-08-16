@@ -15,7 +15,7 @@
         
 
         <h3 class="text-center text primary bg bg-rounded light bg-light m-1 p-2 mb-3">
-            Welcome to <strong>Fastville International Schools</strong> Students and Pupils Page
+            Welcome to <strong>@include('include.schoolname')</strong> Students and Pupils Page
         </h3>
 
         <div class="container">
@@ -42,31 +42,30 @@
                     <th>ID</th>
                     <th>Full Name</th>
                     <th>Gender</th>
-                    <th>Address</th>
+                    <th>Class</th>
                     <th>Actions</th>
                 </tr>
 
-
                 @foreach ($pupils as $pupil)
+              
                 <tr>
-                        <td>{{ $pupil->id }}</td>
-                        <td>{{ $pupil->first_name }} {{ $pupil->middle_name }} {{ $pupil->last_name }}</td>
+                    <td>{{ $pupil->id }}</td>
+                    <td>
+                        <a href="{{ route('pupils.show', $pupil->id) }}" class=""> {{ $pupil->first_name }} {{ $pupil->middle_name }} {{ $pupil->last_name }}</a>
+                    </td>
                         <td>{{ $pupil->gender }}</td>
-                        <td>{{ $pupil->address }}</td>
+                        <td>{{ $pupil->class }}</td>
                         <td style="width:250px">
                             <form action="{{ route('pupils.destroy', $pupil->id) }}"method="POST">
-                               
-                                <a href="{{ route('pupils.show', $pupil->id) }}" class="btn btn-success"> Show</a>
-                                <a href="{{ route('pupils.edit', $pupil->id) }}" class="btn btn-warning"> Edit</a>
                                 
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="confirm('Are you Sure you want to Delete Pupil/Student?')">Delete</button>
-                           
                             </form>
                         </td>
                     @endforeach
                 </tr>
+           
             </table>
         </div>
 

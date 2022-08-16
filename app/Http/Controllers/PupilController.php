@@ -49,7 +49,8 @@ class PupilController extends Controller
             'gender' => 'required',
             'date_of_birth' => 'required',
             'address' => 'required',
-            'school_fee' => 'required'
+            'school_fee' => 'required',
+            'class' => 'required'
         ]);
 
         Pupil::create($request->all());

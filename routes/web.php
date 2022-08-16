@@ -19,7 +19,7 @@ use App\Http\Controllers\ParentController;
 
 
 
-Route::get('school', [HomeController::class, 'index'])->name('school');
+Route::get('/school', [HomeController::class, 'index'])->name('school');
 
 // Route::get('/school/{home}', [HomeController::class, 'index']);
 

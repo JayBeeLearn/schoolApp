@@ -16,7 +16,8 @@ class Pupil extends Model
         'date_of_birth',
         'address',
         'parents_id',
-        'school_fee'
+        'school_fee',
+        'class'
     ];
 
     public function parent(){
