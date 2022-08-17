@@ -5,20 +5,23 @@
 {{-- External JavaScript --}}
     {{-- <script src="{{ url('js/main.js') }}"></script> --}}
 
-    <div class="container justify-content-between d-flex">
-        <div>
+    <div class="d-flex justify-content">
+        <div class="container">
             <a href="{{ route('parents.index') }}" class="btn btn-warning my-2"> Back</a>
         </div>
-        <div>
-            <button class="rounded px-1    bg-primary">
-                    <a href="{{ route('pupils.create', $parent->id) }}" class="text-white btn "><h6>Add New Pupil</h6></a>
-            </button>
+        {{-- Total Amount owed by a parent  --}}
+        <div class="container ">
+            <span id="schoolFee" class="bg bg-dark p-2 rounded text-white"></span>
+        </div>
+        {{-- Add New ward to a parent --}}
+        <div class="container my-1">
+            <a href="{{ route('pupils.create', $parent->id) }}" class="btn btn-primary text-white  ">New Ward</a>
         </div>
         
     </div>
 
     <div class="container bg bg-primary rounded text-center text-white py-2">
-        <h3>Showing {{ $parent->father_name }}</h3>
+        <h3> {{ $parent->father_name }}</h3>
 
     </div>
    
