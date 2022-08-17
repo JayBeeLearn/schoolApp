@@ -55,7 +55,7 @@ class PupilController extends Controller
 
         Pupil::create($request->all());
 
-        return redirect()->route('pupils.index')->with('success', 'Pupil added successfully');
+        return redirect()->route('parents.index')->with('success', 'Pupil added successfully');
     }
 
     /**

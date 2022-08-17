@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Faker\Provider\ar_SA\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,5 +23,9 @@ class Pupil extends Model
 
     public function parent(){
         return $this->belongsTo(Parents::class);
+    }
+
+    public function payments(){
+        return $this->hasMany(Payments::class, 'pupil_id');
     }
 }

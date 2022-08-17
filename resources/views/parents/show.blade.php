@@ -2,6 +2,8 @@
 
 
 @section('content')
+{{-- External JavaScript --}}
+    {{-- <script src="{{ url('js/main.js') }}"></script> --}}
 
     <div class="container justify-content-between d-flex">
         <div>
@@ -78,7 +80,7 @@
                 <a href="{{ route('pupils.show', $pupil->id) }}">
                     {{ $pupil->first_name}} 
                     {{ $pupil->middle_name }} {{ $pupil->last_name }}
-                </a>
+                </a> <span class="schoolFees" >{{ $pupil->school_fee }} </span>
             </li>
         @endforeach
     </ol>
