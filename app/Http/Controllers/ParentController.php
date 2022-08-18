@@ -71,19 +71,17 @@ class ParentController extends Controller
 
     public function show(Parents $parent, Pupil $pupil)
     {
+        // Get all the parent ID
         // $parent_id = Parents::get('id');
-        // $pupils = Pupil::find($parent_id);
+        // Loop through the array and get a specific ID
+        // foreach($parent as $parent_id)
+        // Pass in the specific ID and use the relationship to call the wards
+        // $pupils = Parents::find($parent->id)->pupil;
+        // dd($pupils);
 
-        
+        // THIS LINE BELOW WORKS, BUT STILL EXPLORING OTHER WAYS OF DOING IT
         $pupils = Pupil::where('parents_id', $parent->id)->get();
-        // dd($pupils->first_name);
-        // foreach($pupils as $pupil)
-        // {
-        //     foreach($pupil->pupils as $p){
-        //         dd($p->first_name);
-        //     }
-        // }
-        // dd($pupil->pupils->id);
+    
         return view('parents.show', compact('parent', 'pupils'));
     }
 

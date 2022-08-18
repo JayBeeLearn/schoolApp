@@ -11,10 +11,28 @@ function getChildrenFees() {
         sum = sum + fees;
         console.log(fees);
     }
-
     schoolFee.innerHTML = sum
 
     console.log(sum);
 }
-
 getChildrenFees();
+
+
+amountPaid = document.getElementById('moneyPaid');
+perChild = document.querySelectorAll('#perChildPaid');
+// console.log(perChild)
+numberOfChildren = document.getElementById('numberOfChildren');
+
+children = Number(numberOfChildren.innerHTML)
+
+function distributeAmount() {
+    // formula for dividing what the parent pays to the number of children
+    result = Math.floor(amountPaid.value / children)
+    // A Loop to go through all the children input box value
+    for (i = 0; i < children; i++)
+    // Going through all the children input box value and putting the divided value
+    perChild[i].value = result;
+    
+}
+
+distributeAmount()

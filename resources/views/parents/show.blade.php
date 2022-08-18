@@ -24,6 +24,9 @@
         <h3> {{ $parent->father_name }}</h3>
 
     </div>
+    <div class="container d-flex">
+        <input id="moneyPaid" type="number" class="form-control my-1 w-50 pull-right" onchange="distributeAmount()">
+    </div>
    
     <div class="d-flex justify-content-center m-2">
         
@@ -76,17 +79,20 @@
         
     </div>
     
-
+<form action="">
     <ol>
+        <span id="numberOfChildren" class="sr-only">{{ count($pupils) }}</span>
         @foreach ($pupils as $pupil)
             <li>
                 <a href="{{ route('pupils.show', $pupil->id) }}">
                     {{ $pupil->first_name}} 
                     {{ $pupil->middle_name }} {{ $pupil->last_name }}
-                </a> <span class="schoolFees" >{{ $pupil->school_fee }} </span>
+                </a> <span class="schoolFees sr-only" >{{ $pupil->school_fee }} </span> 
+                <input type="number" class="form-control sr-only" value="" id="perChildPaid">
             </li>
         @endforeach
     </ol>
+</form>
     <div class="container text-center">
             <a href="{{ route('parents.edit', $parent->id) }}" class="btn btn-warning"> Edit</a>
     </div>
