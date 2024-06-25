@@ -13,15 +13,15 @@
             </button>
         </div>
         <div class=" bg-info p-2 rounded ">
-            <h2 class="text-center text-white">
+            <h2 class="text-center text-white text-2xl sm:text-3xl md:text-4xl">
                 Our Classes
             </h2>
         </div>
 
-        <div>
+        <div class="space-y-2 my-2">
             @foreach ($classes as $class)
-                <div class="flex">
-                       <a href="{{ route('class.show', $class->id) }}"> <h3>{{ $class->class  }}</h3></a> <small>{{ $class->school_category }}</small>
+                <div class="flex bg-green-100 px-4 py-2 rounded-md items-center">
+                       <a class="text-blue-500 mr-4 hover:underline text-xl sm:text-xl md:text-2xl" href="{{ route('class.show', $class->id) }}"> <h3>{{ $class->class  }}</h3></a> <small>{{ $class->school_category }}</small>
                 </div>
             @endforeach
         </div>
