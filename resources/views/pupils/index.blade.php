@@ -2,19 +2,19 @@
 
 @section('content')
     <div class="container">
-        <div class="d-flex  justify-content-between">
-                <button class=" rounded px-1 bg-success">
-                    <a href="../school" class="text-white btn "> <i class="fa fa-back"> <h6> Back To Homepage</h6></i> </a>
+        {{-- <div class="flex  justify-content-between mt-4">
+                <button class=" rounded px-2 py-1 bg-green-500">
+                    <a href="../school" class="text-white "> <i class="fa fa-back"> <h6> Back To Homepage</h6></i> </a>
                 </button>
                        
             
-                 {{-- <button class="rounded px-1    bg-primary">
+                 <button class="rounded px-1    bg-primary">
                     <a href="{{ route('pupils.create') }}" class="text-white btn "><h6>Add New Pupil</h6></a>
-                </button> --}}
-        </div>
+                </button>
+        </div> --}}
         
 
-        <h3 class="text-center text primary bg bg-rounded light bg-light m-1 p-2 mb-3">
+        <h3 class="bg-blue-500 rounded-md text-center px-4 py-2 my-4 text-xl text-white sm:text-2xl md:text-3xl">
             Welcome to <strong>@include('include.schoolname')</strong> Students and Pupils Page
         </h3>
 
@@ -36,38 +36,25 @@
             
         </div>
 
-        <div class="container bg bg-light">
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Gender</th>
-                    <th>Class</th>
-                    <th>Actions</th>
-                </tr>
-
-                @foreach ($pupils as $pupil)
-              
-                <tr>
-                    <td>{{ $pupil->id }}</td>
-                    <td>
-                        <a href="{{ route('pupils.show', $pupil->id) }}" class=""> {{ $pupil->first_name }} {{ $pupil->middle_name }} {{ $pupil->last_name }}</a>
-                    </td>
-                        <td>{{ $pupil->gender }}</td>
-                        <td>{{ $pupil->class }}</td>
-                        <td style="width:250px">
-                            <form action="{{ route('pupils.destroy', $pupil->id) }}"method="POST">
-                                
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="confirm('Are you Sure you want to Delete Pupil/Student?')">Delete</button>
-                            </form>
-                        </td>
-                    @endforeach
-                </tr>
-           
-            </table>
+        <div class="space-y-4 mx-4">
+            @foreach ($pupils as $pupil)
+            <div class="bg-blue-50 px-4 py-2 rounded">
+                <p class="text-xl ">
+                    <a href="{{ route('pupils.show', $pupil->id) }}" class="text-blue-500"> {{ $pupil->first_name }} {{ $pupil->father_name }} </a>
+                </p>
+                <div class="mx-4">
+                    <p>
+                    {{ $pupil->gender }}
+                </p>
+                <p>
+                    <a href="{{ route('class.show', $pupil->classes->id) }}" class="text-blue-500">{{ $pupil->classes->class }}</a>
+                </p>
+                </div>
+            </div>
+        @endforeach
         </div>
+
+       
 
         {{ $pupils->links() }}
     </div>

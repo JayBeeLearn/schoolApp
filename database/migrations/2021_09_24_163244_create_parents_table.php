@@ -26,23 +26,7 @@ class CreateParentsTable extends Migration
 
 
 
-        Schema::create('pupils', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('last_name');
-            $table->string('gender');
-            $table->date('date_of_birth');
-            $table->string('address');
-            $table->unsignedInteger('parents_id');
-            $table->integer('school_fee');
-            $table->string('class');
-            $table->timestamps();
-            $table->foreign('parents_id')
-            ->references('id')
-                ->on('parents')
-                ->onDelete('cascade');
-        });
+     
     }
 
     /**

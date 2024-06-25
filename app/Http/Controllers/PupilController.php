@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parents;
 use App\Models\Pupil;
+use App\Models\Classes;
+use App\Models\Parents;
 use Illuminate\Http\Request;
 
 class PupilController extends Controller
@@ -15,7 +16,10 @@ class PupilController extends Controller
      */
     public function index()
     {
-        $pupils = Pupil::latest()->paginate(3);
+
+
+        $pupils = Pupil::with(['classes' , 'fees', 'parents'] )->latest()->paginate(3);
+        // dd($pupils);
         return view('pupils.index', compact('pupils'))->with(request()->input('page'));
 
 
@@ -30,8 +34,8 @@ class PupilController extends Controller
      */
     public function create(Parents $parents)
     {
-        // $parents = Parents::all();
-        return view('pupils.create', compact('parents'));
+        $classes = Classes::all();
+        return view('pupils.create', compact('parents', 'classes'));
     }
 
     /**
@@ -44,18 +48,18 @@ class PupilController extends Controller
     {
         $this->validate($request, [
             'first_name' => 'required|max:255',
-            'middle_name' => 'required',
-            'last_name' => 'required',
+            'father_name' => 'required',
             'gender' => 'required',
             'date_of_birth' => 'required',
             'address' => 'required',
             'school_fee' => 'required',
-            'class' => 'required'
-        ]);
-
+            'classes_id' => 'required'
+            ]);
+            // dd($request->all());
+            
         Pupil::create($request->all());
 
-        return redirect()->route('parents.index')->with('success', 'Pupil added successfully');
+        return redirect()->route('pupils.index')->with('success', 'Pupil added successfully');
     }
 
     /**
@@ -66,20 +70,32 @@ class PupilController extends Controller
      */
     public function show(Pupil $pupil, Parents $parents)
     {
+        // dd($pupil->classes);
         // create a variable, call the model; use with function and pass in the 
         //relationship model name i.e the name used in model while creating the relationship 
         $parents = Parents::where('id', $pupil->parents_id)->get();
         // $parents = Parents::get('id');
-        // // dd($parents);
+        // dd($parents);
         // foreach($pupil as $parents)
         // // dd($pupil->id);
         // $parentId = $pupil->id;
         // // dd($parentId);
         // $parents = Pupil::find($parentId)->parent;
         // // dd($parents);
+
+        $pupilId = $pupil->id;
+        $fees = $pupil->school_fee;
+        // dd($pupilId);
+
+        $paid = Pupil::with('fees')->find($pupilId)->fees->sum('fees');
+        $owed = $fees - $paid;
+
+        // dd($fees);
+        // $sum = array_sum($fees);
+        // dd($sum);
         
 
-        return view('pupils.show', compact('pupil', 'parents'));
+        return view('pupils.show', compact('pupil', 'parents', 'paid', 'owed'));
     }
 
     /**
@@ -104,18 +120,20 @@ class PupilController extends Controller
     {
         $this->validate($request, [
             'first_name' => 'required|max:255',
-            'middle_name' => 'required',
-            'last_name' => 'required',
+            'father_name' => 'required',
+            'gender' => 'required',
             'date_of_birth' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'school_fee' => 'required',
+            'classes_id' => 'required'
         ]);
-
-
-
         $pupil->update($request->all());
 
         return redirect()->route('pupils.index')->with('success', 'Pupil updated successfully');
     }
+
+    // Pay School Fees 
+
 
     /**
      * Remove the specified resource from storage.

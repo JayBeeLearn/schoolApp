@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classes;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Class_;
 
 class ClassController extends Controller
 {
@@ -13,7 +15,10 @@ class ClassController extends Controller
      */
     public function index()
     {
-        return view('class.index');
+        $classes = Classes::with('pupils')->get();
+
+        // dd($classes);
+        return view('class.index', compact('classes'));
     }
 
     /**
@@ -34,18 +39,39 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+        $this->validate($request, [
+            'school_category' => 'required',
+            'class' => 'required',
+        ]);
+
+        Classes::create([
+            'school_category' => $request->get('school_category'),
+            'class' => $request->get('class'),
+        ]);
+
+        return redirect()->route('class.index');
+    
+        
+    }
+            
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Classes $classes, $id)
     {
-        //
+
+        // dd($id);
+        $students = Classes::with('pupils')->find($id)->pupils;
+        // dd($students->pupils); 
+
+
+        $classes = Classes::find($id);
+        
+        return view('class.show', compact('classes', 'students'));
     }
 
     /**

@@ -1,24 +1,23 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container">
-        <div class="d-flex  justify-content-between">
-                <button class=" rounded px-1 bg-success">
-                    <a href="../school" class="text-white btn "> <i class="fa fa-back"> <h6> Back to Home Page</h6></i> </a>
-                </button>
+    <div class="mt-4">
+        <div class="flex  justify-between text-white" >
+            <div class="rounded px-4 py-2 bg-yellow-500 ">
+                <a href="/school" >Back to Home Page </a>
+            </div>
                        
-            
-                 <button class="rounded px-1    bg-primary">
-                    <a href="{{ route('parents.create') }}" class="text-white btn "><h6>Add New parent</h6></a>
-                </button>
-            
-               
+            <div class="rounded  bg-blue-500 px-4 py-2">
+                <a href="{{ route('parents.create') }}" >Add New parent</a>
+            </div>
         </div>
         
 
-        <h3 class="text-center text primary bg bg-rounded light bg-light m-1 p-2 mb-3">
+        <div class="bg-info my-2 rounded text-white px-4 py-2">
+            <h3 class="text-center text-2xl sm:text-3xl sm:text-4xl ">
             Welcome to <strong>Fastville International Schools</strong> Parents Page
         </h3>
+        </div>
 
         <div class="container">
             @if ($message = Session::get('success'))
@@ -38,37 +37,33 @@
             
         </div>
 
-        <div class="container bg bg-light">
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Father Name</th>
-                    <th>Mother Name</th>
-                    <th>Actions</th>
-                </tr>
-
-
+        <div class="w-11/12 mx-auto">
+            <div class="space-y-2">
                 @foreach ($parents as $parent)
-                <tr>
-                        <td>{{ $parent->id }}</td>
-                        <td>
-                            <a href="{{ route('parents.show', $parent->id) }}" class="">{{ $parent->father_name}} </a>
-                            
-                        
-                        </td>
-                        <td><a href="{{ route('parents.show', $parent->id) }}" class="">{{ $parent->mother_name}} </a></td>
-                        <td style="width:250px">
-                            <form action="{{ route('parents.destroy', $parent->id) }}"method="POST">
-                                                       
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="confirm('Are you Sure you want to Delete parent/Student?')">Delete</button>
-                           
-                            </form>
-                        </td>
-                    @endforeach
-                </tr>
-            </table>
+                    <div>
+                        <div class="bg-green-100 rounded-sm px-4 py-2  hover:bg-gray-200">
+                            <div class="flex">
+                                <a href="{{ route('parents.show', $parent->id) }}" class="text-blue-500 text-lg">
+                                    <p class="mr-4">
+                                        {{ $parent->father_name}} 
+                                    </p>
+                                </a>
+                               <a  href="tel:{{ $parent->father_phone }}">{{ $parent->father_phone }}</a>
+                               
+                            </div>
+
+                            <div class="flex">
+                                <a href="{{ route('parents.show', $parent->id) }}" class="text-blue-500 text-lg">
+                                    <p class="mr-4">
+                                    {{ $parent->mother_name}} 
+                                    </p>
+                                </a>
+                               <a  href="tel:{{ $parent->mother_phone }}">{{ $parent->mother_phone }}</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
 
         {{ $parents->links() }}

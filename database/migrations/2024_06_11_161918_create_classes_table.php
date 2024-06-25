@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\Parents;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class CreateClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,11 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Parents::class);
-            $table->integer('amount');
+            $table->string('school_category');
+            $table->string('class');
+            $table->string('arm')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('classes');
     }
 }

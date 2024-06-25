@@ -1,1 +1,1 @@
-Fastville International Schools
+Sample School

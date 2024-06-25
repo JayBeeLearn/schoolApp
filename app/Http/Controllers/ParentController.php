@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pupil;
 use App\Models\Parents;
+use App\Models\Payments;
 use Illuminate\Http\Request;
 
 class ParentController extends Controller
@@ -71,18 +72,23 @@ class ParentController extends Controller
 
     public function show(Parents $parent, Pupil $pupil)
     {
-        // Get all the parent ID
-        $parent_id = Parents::get('id');
-        // Loop through the array and get a specific ID
-        foreach($parent as $parent_id)
-        // Pass in the specific ID and use the relationship to call the wards
+        $parent_id = $parent->id;
         $pupils = Parents::find($parent->id)->pupil;
         // dd($pupils);
 
-        // THIS LINE BELOW WORKS, BUT STILL EXPLORING OTHER WAYS OF DOING IT
-        // $pupils = Pupil::where('parents_id', $parent->id)->get();
+        // dd($parent_id);
+
+        $parentFee = Parents::with('pupil')->find($parent_id)->pupil->sum('school_fee');
+        // dd($parentFee);
+
+        $paidByParent = Parents::with('payments')->find($parent_id)->payments->sum('amount');
+
+       
+       
+        $owedByParent = $parentFee - $paidByParent; 
+
     
-        return view('parents.show', compact('parent', 'pupils'));
+        return view('parents.show', compact('parent', 'pupils', 'parentFee', 'paidByParent', 'owedByParent'));
     }
 
 

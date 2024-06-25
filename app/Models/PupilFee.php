@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payments extends Model
+class PupilFee extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id', 
         'parents_id',
-        'amount', 
-        
+        'pupil_id',
+        'fees'
     ];
 
-    public function parents(){
-        return $this->belongsTo(Parents::class);
+    public function pupil(){
+        return $this->belongsTo(Pupil::class);
     }
-    
-   
 }
